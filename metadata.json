@@ -1,0 +1,9 @@
+{
+  "uuid": "gnshell@local",
+  "name": "GNShell",
+  "description": "Smart island overlay for GNOME Shell 50",
+  "shell-version": ["50"],
+  "session-modes": ["user"],
+  "settings-schema": "org.gnome.shell.extensions.gnshell",
+  "version": 1
+}

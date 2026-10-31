@@ -1,0 +1,23 @@
+.gnshell {
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 18px;
+    padding: 3px 8px;
+    spacing: 6px;
+    font-size: 12px;
+    min-height: 20px;
+}
+.gnshell .ns-button {
+    color: #fff;
+    background-color: #222;
+    border-radius: 8px;
+    padding: 6px;
+}
+.gnshell .ns-button:focus, .gnshell .ns-button:hover {
+    background-color: #444;
+    box-shadow: inset 0 0 0 1px #fff;
+}
+.gnshell .ns-row { spacing: 6px; }
+.gnshell .ns-list { spacing: 8px; }
+.gnshell .ns-body { color: #ccc; }
