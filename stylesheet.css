@@ -1,23 +1,106 @@
+/* Notch: solid black, flush with the top edge, rounded bottom corners. */
 .gnshell {
     background-color: #000;
     color: #fff;
-    border: 1px solid #555;
-    border-radius: 18px;
-    padding: 3px 8px;
-    spacing: 6px;
-    font-size: 12px;
-    min-height: 20px;
+    border: none;
+    padding: 0;
+    font-size: 13px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
+.gnshell.ns-compact { border-radius: 0 0 16px 16px; }
+.gnshell.ns-peek { border-radius: 0 0 24px 24px; }
+.gnshell.ns-expanded { border-radius: 0 0 24px 24px; }
+.gnshell .ns-icon { color: #fff; }
+
+/* Compact */
+.gnshell .ns-compact-button { padding: 0 14px; min-height: 30px; border-radius: 0 0 16px 16px; }
+.gnshell .ns-compact-row { spacing: 8px; }
+.gnshell .ns-compact-text { font-weight: bold; }
+
+/* Peek */
+.gnshell .ns-peek-button { padding: 8px 14px 10px 14px; border-radius: 0 0 24px 24px; }
+.gnshell .ns-peek-row { spacing: 10px; }
+.gnshell .ns-peek-text { spacing: 0; }
+.gnshell .ns-peek-title { font-weight: bold; font-size: 13px; }
+.gnshell .ns-peek-body { color: #a8a8ad; font-size: 11px; }
+.gnshell .ns-peek-mark { color: #a8a8ad; }
+.gnshell .ns-app-icon { color: #fff; }
+
+/* Expanded */
+.gnshell .ns-body-expanded { padding: 8px 14px 14px 14px; spacing: 8px; }
+.gnshell .ns-header { spacing: 8px; min-height: 28px; }
+.gnshell .ns-clock { font-size: 18px; font-weight: bold; }
+.gnshell .ns-date { font-size: 12px; color: #a8a8ad; }
+.gnshell .ns-battery { spacing: 4px; }
+.gnshell .ns-percent { font-size: 11px; font-weight: bold; color: #d6d6da; min-width: 28px; }
+.gnshell .ns-battery .ns-percent { min-width: 0; }
+.gnshell .ns-tabs { background-color: #1c1c1e; border-radius: 12px; padding: 2px; spacing: 2px; }
+.gnshell .ns-tab { color: #a8a8ad; border-radius: 10px; padding: 3px 8px; font-size: 12px; }
+.gnshell .ns-tab-row { spacing: 5px; }
+.gnshell .ns-tab .ns-icon { color: #a8a8ad; }
+.gnshell .ns-tab:hover { background-color: #2c2c2e; }
+.gnshell .ns-tab.ns-active { background-color: #3584e4; color: #fff; font-weight: bold; }
+.gnshell .ns-tab.ns-active .ns-icon { color: #fff; }
+.gnshell .ns-tab:focus { box-shadow: inset 0 0 0 2px #fff; }
+.gnshell .ns-page { spacing: 8px; }
+
+/* Buttons */
 .gnshell .ns-button {
     color: #fff;
-    background-color: #222;
-    border-radius: 8px;
-    padding: 6px;
+    background-color: #2c2c2e;
+    border-radius: 10px;
+    padding: 4px 12px;
 }
-.gnshell .ns-button:focus, .gnshell .ns-button:hover {
-    background-color: #444;
-    box-shadow: inset 0 0 0 1px #fff;
+.gnshell .ns-button.ns-small { padding: 2px 9px; font-size: 11px; }
+.gnshell .ns-button:hover { background-color: #48484a; }
+.gnshell .ns-button:focus, .gnshell .ns-icon-button:focus,
+.gnshell .ns-tile:focus, .gnshell .ns-compact-button:focus, .gnshell .ns-peek-button:focus,
+.gnshell .ns-notification-title:focus {
+    box-shadow: inset 0 0 0 2px #fff;
 }
-.gnshell .ns-row { spacing: 6px; }
-.gnshell .ns-list { spacing: 8px; }
-.gnshell .ns-body { color: #ccc; }
+.gnshell .ns-icon-button {
+    background-color: #2c2c2e;
+    border-radius: 99px;
+    padding: 8px;
+}
+.gnshell .ns-icon-button:hover { background-color: #48484a; }
+.gnshell .ns-icon-button.ns-small { padding: 6px; }
+.gnshell .ns-icon-button.ns-close { padding: 5px; background-color: #1c1c1e; }
+.gnshell .ns-disabled { color: #6c6c70; }
+.gnshell .ns-disabled .ns-icon { color: #6c6c70; }
+
+/* Control tiles: round icon + small caption, colored when active */
+.gnshell .ns-tile { border-radius: 14px; padding: 4px 2px; }
+.gnshell .ns-tile:hover { background-color: #1c1c1e; }
+.gnshell .ns-tile-column { spacing: 4px; }
+.gnshell .ns-tile-icon { background-color: #2c2c2e; border-radius: 99px; padding: 11px; }
+.gnshell .ns-tile-title { font-size: 11px; color: #a8a8ad; }
+.gnshell .ns-tile.ns-active .ns-tile-icon { background-color: #3584e4; }
+.gnshell .ns-tile.ns-active .ns-tile-title { color: #fff; font-weight: bold; }
+.gnshell .ns-tile.ns-disabled .ns-tile-icon { background-color: #1c1c1e; }
+
+/* Volume and action row */
+.gnshell .ns-volume { spacing: 8px; }
+.gnshell .ns-actions { spacing: 2px; }
+.gnshell .ns-separator { background-color: #3a3a3c; width: 1px; height: 18px; margin: 0 4px; }
+.gnshell .slider {
+    height: 16px;
+    color: #3584e4;
+    -barlevel-height: 5px;
+    -barlevel-background-color: #3a3a3c;
+    -barlevel-active-background-color: #3584e4;
+    -barlevel-border-width: 0;
+    -barlevel-active-border-width: 0;
+    -slider-handle-radius: 7px;
+}
+
+/* Activity */
+.gnshell .ns-notification { background-color: #1c1c1e; border-radius: 12px; padding: 6px 10px; spacing: 8px; }
+.gnshell .ns-notification-text { spacing: 0; }
+.gnshell .ns-notification-title { border-radius: 6px; }
+.gnshell .ns-notification-title-text { font-weight: bold; font-size: 12px; }
+.gnshell .ns-notification-body { color: #a8a8ad; font-size: 11px; }
+.gnshell .ns-notification-actions { spacing: 4px; padding-top: 3px; }
+.gnshell .ns-empty { spacing: 4px; padding: 14px 0; }
+.gnshell .ns-empty-icon { color: #636366; }
+.gnshell .ns-empty-text { color: #a8a8ad; font-size: 12px; }
