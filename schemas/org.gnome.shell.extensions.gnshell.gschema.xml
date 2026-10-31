@@ -7,6 +7,8 @@
     <key name="privacy-mode" type="b"><default>true</default><summary>Hide notification content</summary></key>
     <key name="animations" type="b"><default>true</default><summary>Animate transitions when GNOME permits</summary></key>
     <key name="peek-seconds" type="u"><range min="1" max="15"/><default>4</default><summary>Peek duration</summary></key>
+    <key name="media-peek" type="b"><default>true</default><summary>Show a Peek when a media player starts a new song</summary></key>
+    <key name="media-peek-seconds" type="u"><range min="1" max="15"/><default>3</default><summary>Media Peek duration</summary></key>
     <key name="reveal-seconds" type="u"><range min="2" max="30"/><default>6</default><summary>Fullscreen inactivity timeout</summary></key>
   </schema>
 </schemalist>
