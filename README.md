@@ -1,7 +1,7 @@
-# GNShell — development candidate
+# Islet — development candidate
 
 Target awal: GNOME Shell 50.5 pada Wayland. Kompatibilitas runtime belum disertifikasi.
-UUID lokal: `gnshell@local`. Tidak ada bundler, server notifikasi, database, ataupun daemon tambahan.
+UUID lokal: `islet@local`. Tidak ada bundler, server notifikasi, database, ataupun daemon tambahan.
 
 ## Instalasi lokal
 
@@ -10,9 +10,9 @@ GLib schemas, GNOME Bluetooth 3, GTK4/libadwaita untuk Preferences, Python3 dan 
 Node 22+ hanya dibutuhkan untuk sebagian test. Pengaturan jaringan membuka gnome-control-center.
 
     glib-compile-schemas --strict schemas
-    mkdir -p /tmp/gnshell-dist
-    gnome-extensions pack --force --extra-source=lib --extra-source=bridge --schema=schemas/org.gnome.shell.extensions.gnshell.gschema.xml --out-dir=/tmp/gnshell-dist .
-    gnome-extensions install --force /tmp/gnshell-dist/gnshell@local.shell-extension.zip
+    mkdir -p /tmp/islet-dist
+    gnome-extensions pack --force --extra-source=lib --extra-source=bridge --podir=po --schema=schemas/org.gnome.shell.extensions.islet.gschema.xml --out-dir=/tmp/islet-dist .
+    gnome-extensions install --force /tmp/islet-dist/islet@local.shell-extension.zip
 
 Sebelum install, pastikan UUID ini belum digunakan atau backup folder versi lama dahulu: `--force`
 menimpa instalasi yang sudah ada, dan tanpa `--force` perintah gagal jika extension sudah terpasang.
@@ -20,12 +20,28 @@ Logout/login setelah instalasi pertama atau
 perubahan source untuk memastikan Shell memakai module baru; simpan pekerjaan dahulu. Wayland tidak
 mendukung restart Shell melalui Alt+F2 lalu r. Kemudian:
 
-    gnome-extensions enable gnshell@local
-    gnome-extensions prefs gnshell@local
+    gnome-extensions enable islet@local
+    gnome-extensions prefs islet@local
 
 Awalnya Top Bar tetap tampil dan banner tetap milik GNOME. Setelah pengujian Phase 0 lulus,
 aktifkan Ganti Top Bar. Setelah pengujian Phase 3 lulus, aktifkan Alihkan banner ke notch.
 Kedua default aman ini adalah tahapan validasi, bukan mode akhir Hybrid Replacement.
+
+## Bahasa
+
+Teks di notch dan di jendela Preferences mengikuti bahasa sistem (gettext, domain `islet`): Indonesia
+untuk sistem berbahasa Indonesia, Inggris untuk bahasa lain. Teks sumber ada dalam bahasa Inggris
+(`_('...')` di `lib/*.js` dan `prefs.js`). Katalog ada di `po/`; `locale/id/LC_MESSAGES/islet.mo` adalah
+hasil kompilasi untuk pemakaian langsung dari folder source.
+
+Setelah mengubah atau menambah teks `_('...')`:
+
+    xgettext --from-code=UTF-8 --language=JavaScript -k_ --package-name=Islet -o po/islet.pot prefs.js extension.js lib/*.js
+    msgmerge --update po/id.po po/islet.pot
+    msgfmt -c -o locale/id/LC_MESSAGES/islet.mo po/id.po
+
+Bahasa baru: salin `po/islet.pot` menjadi `po/<kode>.po`, terjemahkan, lalu kompilasi ke
+`locale/<kode>/LC_MESSAGES/islet.mo`. Format tanggal di Expanded mengikuti locale sistem.
 
 ## Pemakaian
 
@@ -58,7 +74,7 @@ saat banner dimatikan (`show-banners` false) lagu tidak ditampilkan dan tidak mu
 
 Wi-Fi menampilkan status radio; tombolnya membuka Settings. Bluetooth membuka Settings.
 Volume/mute mengendalikan default audio sink. Caffeine hanya mengelola inhibit idle+suspend milik
-GNShell; mematikannya tidak melepas inhibitor aplikasi lain. Lock, Logout, Restart, Shutdown
+Islet; mematikannya tidak melepas inhibitor aplikasi lain. Lock, Logout, Restart, Shutdown
 memakai mekanisme GNOME dan kebijakan konfirmasi sistem. Tombol gear membuka aplikasi GNOME Settings
 dan tombol lonceng membuka panel Notifikasi di Settings; keduanya menutup notch dan tidak memunculkan
 Top Bar.
@@ -74,7 +90,7 @@ Low/background masuk Activity; tidak ditampilkan sebagai Running tanpa sumber ak
 
 Setelah extension terinstall, tambahkan SATU root key di konfigurasi USER Codex, sebelum tabel TOML:
 
-    notify = ["python3", "/home/gabz/.local/share/gnome-shell/extensions/gnshell@local/bridge/codex-notify.py"]
+    notify = ["python3", "/home/gabz/.local/share/gnome-shell/extensions/islet@local/bridge/codex-notify.py"]
 
 Sesuaikan path jika akun berbeda. Backup config sebelum edit, pertahankan semua key lain, dan
 restart proses Codex. Bridge hanya menerima agent-turn-complete. Isi prompt/jawaban, session ID,
@@ -94,7 +110,7 @@ Gunakan matriks QA dalam dokumen handoff.
 
 Jika Shell masih responsif:
 
-    gnome-extensions disable gnshell@local
+    gnome-extensions disable islet@local
 
 Disable normal harus mengembalikan tracking strut dan kebijakan panel, melepas modal dan inhibitor
 sendiri, memulihkan method notifikasi, serta menghapus signal, timer, dan actor yang dibuat extension.
@@ -104,8 +120,8 @@ Jika API notifikasi berubah, matikan Alihkan banner ke notch dan pakai banner GN
 Jika Shell tidak responsif, masuk TTY (Ctrl+Alt+F3), login sebagai pengguna yang sama, lalu pindahkan
 folder extension ke luar direktori extensions:
 
-    mkdir -p "$HOME/.local/share/gnshell-recovery"
-    mv "$HOME/.local/share/gnome-shell/extensions/gnshell@local" "$HOME/.local/share/gnshell-recovery/gnshell-$(date +%Y%m%d-%H%M%S)"
+    mkdir -p "$HOME/.local/share/islet-recovery"
+    mv "$HOME/.local/share/gnome-shell/extensions/islet@local" "$HOME/.local/share/islet-recovery/islet-$(date +%Y%m%d-%H%M%S)"
 
 Simpan pekerjaan jika masih memungkinkan, lalu logout/login sesi grafis. Jangan menyalakan kembali
 extension sebelum log diperiksa. Crash proses Shell berbeda dari disable normal; restore di proses

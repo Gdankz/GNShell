@@ -15,7 +15,7 @@ def command(payload, show_project=False):
     if show_project and isinstance(cwd, str) and cwd:
         project = "".join(c for c in Path(cwd).name if c.isprintable())[:80]
         body = f"Proyek: {project}" if project else body
-    return ["notify-send", "--app-name=GNShell Codex", "--icon=utilities-terminal",
+    return ["notify-send", "--app-name=Islet Codex", "--icon=utilities-terminal",
             "--urgency=normal", "--", "Codex selesai", body]
 
 

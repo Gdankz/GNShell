@@ -1,9 +1,10 @@
 {
-  "uuid": "gnshell@local",
-  "name": "GNShell",
+  "uuid": "islet@local",
+  "name": "Islet",
   "description": "Smart island overlay for GNOME Shell 50",
   "shell-version": ["50"],
   "session-modes": ["user", "unlock-dialog"],
-  "settings-schema": "org.gnome.shell.extensions.gnshell",
+  "settings-schema": "org.gnome.shell.extensions.islet",
+  "gettext-domain": "islet",
   "version": 1
 }
