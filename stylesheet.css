@@ -1,0 +1,106 @@
+/* Notch: solid black, flush with the top edge, rounded bottom corners. */
+.islet {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 0;
+    font-size: 13px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+.islet.ns-compact { border-radius: 0 0 16px 16px; }
+.islet.ns-peek { border-radius: 0 0 24px 24px; }
+.islet.ns-expanded { border-radius: 0 0 24px 24px; }
+.islet .ns-icon { color: #fff; }
+
+/* Compact */
+.islet .ns-compact-button { padding: 0 14px; min-height: 30px; border-radius: 0 0 16px 16px; }
+.islet .ns-compact-row { spacing: 8px; }
+.islet .ns-compact-text { font-weight: bold; }
+
+/* Peek */
+.islet .ns-peek-button { padding: 8px 14px 10px 14px; border-radius: 0 0 24px 24px; }
+.islet .ns-peek-row { spacing: 10px; }
+.islet .ns-peek-text { spacing: 0; }
+.islet .ns-peek-title { font-weight: bold; font-size: 13px; }
+.islet .ns-peek-body { color: #a8a8ad; font-size: 11px; }
+.islet .ns-peek-mark { color: #a8a8ad; }
+.islet .ns-app-icon { color: #fff; }
+
+/* Expanded */
+.islet .ns-body-expanded { padding: 8px 14px 14px 14px; spacing: 8px; }
+.islet .ns-header { spacing: 8px; min-height: 28px; }
+.islet .ns-clock { font-size: 18px; font-weight: bold; }
+.islet .ns-date { font-size: 12px; color: #a8a8ad; }
+.islet .ns-battery { spacing: 4px; }
+.islet .ns-percent { font-size: 11px; font-weight: bold; color: #d6d6da; min-width: 28px; }
+.islet .ns-battery .ns-percent { min-width: 0; }
+.islet .ns-tabs { background-color: #1c1c1e; border-radius: 12px; padding: 2px; spacing: 2px; }
+.islet .ns-tab { color: #a8a8ad; border-radius: 10px; padding: 3px 8px; font-size: 12px; }
+.islet .ns-tab-row { spacing: 5px; }
+.islet .ns-tab .ns-icon { color: #a8a8ad; }
+.islet .ns-tab:hover { background-color: #2c2c2e; }
+.islet .ns-tab.ns-active { background-color: #3584e4; color: #fff; font-weight: bold; }
+.islet .ns-tab.ns-active .ns-icon { color: #fff; }
+.islet .ns-tab:focus { box-shadow: inset 0 0 0 2px #fff; }
+.islet .ns-page { spacing: 8px; }
+
+/* Buttons */
+.islet .ns-button {
+    color: #fff;
+    background-color: #2c2c2e;
+    border-radius: 10px;
+    padding: 4px 12px;
+}
+.islet .ns-button.ns-small { padding: 2px 9px; font-size: 11px; }
+.islet .ns-button:hover { background-color: #48484a; }
+.islet .ns-button:focus, .islet .ns-icon-button:focus,
+.islet .ns-tile:focus, .islet .ns-compact-button:focus, .islet .ns-peek-button:focus,
+.islet .ns-notification-title:focus {
+    box-shadow: inset 0 0 0 2px #fff;
+}
+.islet .ns-icon-button {
+    background-color: #2c2c2e;
+    border-radius: 99px;
+    padding: 8px;
+}
+.islet .ns-icon-button:hover { background-color: #48484a; }
+.islet .ns-icon-button.ns-small { padding: 6px; }
+.islet .ns-icon-button.ns-close { padding: 5px; background-color: #1c1c1e; }
+.islet .ns-disabled { color: #6c6c70; }
+.islet .ns-disabled .ns-icon { color: #6c6c70; }
+
+/* Control tiles: round icon + small caption, colored when active */
+.islet .ns-tile { border-radius: 14px; padding: 4px 2px; }
+.islet .ns-tile:hover { background-color: #1c1c1e; }
+.islet .ns-tile-column { spacing: 4px; }
+.islet .ns-tile-icon { background-color: #2c2c2e; border-radius: 99px; padding: 11px; }
+.islet .ns-tile-title { font-size: 11px; color: #a8a8ad; }
+.islet .ns-tile.ns-active .ns-tile-icon { background-color: #3584e4; }
+.islet .ns-tile.ns-active .ns-tile-title { color: #fff; font-weight: bold; }
+.islet .ns-tile.ns-disabled .ns-tile-icon { background-color: #1c1c1e; }
+
+/* Volume and action row */
+.islet .ns-volume { spacing: 8px; }
+.islet .ns-actions { spacing: 2px; }
+.islet .ns-separator { background-color: #3a3a3c; width: 1px; height: 18px; margin: 0 4px; }
+.islet .slider {
+    height: 16px;
+    color: #3584e4;
+    -barlevel-height: 5px;
+    -barlevel-background-color: #3a3a3c;
+    -barlevel-active-background-color: #3584e4;
+    -barlevel-border-width: 0;
+    -barlevel-active-border-width: 0;
+    -slider-handle-radius: 7px;
+}
+
+/* Activity */
+.islet .ns-notification { background-color: #1c1c1e; border-radius: 12px; padding: 6px 10px; spacing: 8px; }
+.islet .ns-notification-text { spacing: 0; }
+.islet .ns-notification-title { border-radius: 6px; }
+.islet .ns-notification-title-text { font-weight: bold; font-size: 12px; }
+.islet .ns-notification-body { color: #a8a8ad; font-size: 11px; }
+.islet .ns-notification-actions { spacing: 4px; padding-top: 3px; }
+.islet .ns-empty { spacing: 4px; padding: 14px 0; }
+.islet .ns-empty-icon { color: #636366; }
+.islet .ns-empty-text { color: #a8a8ad; font-size: 12px; }
