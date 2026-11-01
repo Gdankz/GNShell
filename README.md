@@ -1,129 +1,157 @@
-# Islet — development candidate
+# Islet
+![alt text](image-2.png)
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-3.png)
+A notch-style "island" for GNOME Shell. Islet puts a compact clock and status indicators at the top
+edge of the screen, expands on hover into quick controls and recent activity, and can show
+notifications and now-playing music as a short "Peek" instead of the stock banners.
 
-Target awal: GNOME Shell 50.5 pada Wayland. Kompatibilitas runtime belum disertifikasi.
-UUID lokal: `islet@local`. Tidak ada bundler, server notifikasi, database, ataupun daemon tambahan.
+> **Status: development candidate.** Targets GNOME Shell 50.5 on Wayland. Compatibility with other
+> versions is not certified. Local UUID: `islet@local`. No bundler, notification server, database,
+> or extra daemon is involved.
 
-## Instalasi lokal
+## Features
 
-Jalankan dari root source yang telah dibuat sesuai handoff. Dibutuhkan GJS, tool GNOME Extensions,
-GLib schemas, GNOME Bluetooth 3, GTK4/libadwaita untuk Preferences, Python3 dan notify-send untuk bridge.
-Node 22+ hanya dibutuhkan untuk sebagian test. Pengaturan jaringan membuka gnome-control-center.
+- **Compact notch**: clock plus network and battery icons at the top edge.
+- **Expanded view** (about 320 px wide): clock, date, battery and close button, Controls and
+  Activity tabs, round toggles (Wi-Fi, Bluetooth, Caffeine, Sound), a volume row, and a row of
+  small icon buttons (open GNOME Settings, notification settings, lock, log out, restart, power
+  off). A Record tile opens GNOME's screen recording UI and turns into Stop while recording.
+- **Notification Peek**: optionally redirects banners to the notch. Privacy Mode (on by default)
+  hides titles, bodies, and actions.
+- **Music Peek**: shows the cover art, title, and "artist • app" when the song changes in Spotify
+  or any other MPRIS player.
+- **Smart Reveal** in fullscreen, plus a keyboard shortcut.
+- **Lock screen**: the notch stays visible in compact form only.
+- **Languages**: English and Indonesian, following the system language.
 
-    glib-compile-schemas --strict schemas
-    mkdir -p /tmp/islet-dist
-    gnome-extensions pack --force --extra-source=lib --extra-source=bridge --podir=po --schema=schemas/org.gnome.shell.extensions.islet.gschema.xml --out-dir=/tmp/islet-dist .
-    gnome-extensions install --force /tmp/islet-dist/islet@local.shell-extension.zip
+## Installation
 
-Sebelum install, pastikan UUID ini belum digunakan atau backup folder versi lama dahulu: `--force`
-menimpa instalasi yang sudah ada, dan tanpa `--force` perintah gagal jika extension sudah terpasang.
-Logout/login setelah instalasi pertama atau
-perubahan source untuk memastikan Shell memakai module baru; simpan pekerjaan dahulu. Wayland tidak
-mendukung restart Shell melalui Alt+F2 lalu r. Kemudian:
+    git clone https://github.com/Gdankz/Islet.git
+    cd Islet
+    ./install.sh
 
-    gnome-extensions enable islet@local
-    gnome-extensions prefs islet@local
+Then log out and back in. That is required: Wayland cannot reload a running Shell. To update, run
+`git pull` and `./install.sh` again, then log out and back in. Your settings are kept.
 
-Awalnya Top Bar tetap tampil dan banner tetap milik GNOME. Setelah pengujian Phase 0 lulus,
-aktifkan Ganti Top Bar. Setelah pengujian Phase 3 lulus, aktifkan Alihkan banner ke notch.
-Kedua default aman ini adalah tahapan validasi, bukan mode akhir Hybrid Replacement.
+Requirements: GNOME Shell 50 on Wayland, plus the `gnome-extensions`, `glib-compile-schemas`, and
+`msgfmt` tools. The script stops and names any tool that is missing. GNOME Bluetooth 3 is needed for
+the Bluetooth control, GTK4/libadwaita for Preferences, and Python 3 with `notify-send` for the Codex
+bridge. The network button opens gnome-control-center.
 
-## Bahasa
+Open the settings with `gnome-extensions prefs islet@local`. By default the Top Bar stays visible and
+banners stay with GNOME. Once the extension works on your system, enable **Replace Top Bar** and then
+**Redirect banners to the island**.
 
-Teks di notch dan di jendela Preferences mengikuti bahasa sistem (gettext, domain `islet`): Indonesia
-untuk sistem berbahasa Indonesia, Inggris untuk bahasa lain. Teks sumber ada dalam bahasa Inggris
-(`_('...')` di `lib/*.js` dan `prefs.js`). Katalog ada di `po/`; `locale/id/LC_MESSAGES/islet.mo` adalah
-hasil kompilasi untuk pemakaian langsung dari folder source.
+To remove Islet: `gnome-extensions uninstall islet@local`, then log out and back in.
 
-Setelah mengubah atau menambah teks `_('...')`:
+## Languages
+
+Text in the notch and in the Preferences window follows the system language (gettext, domain
+`islet`): Indonesian on Indonesian systems, English otherwise. Source strings are in English
+(`_('...')` in `lib/*.js` and `prefs.js`). Catalogs live in `po/`;
+`locale/id/LC_MESSAGES/islet.mo` is the compiled output, so the extension also works when run
+directly from the source folder.
+
+After changing or adding `_('...')` strings:
 
     xgettext --from-code=UTF-8 --language=JavaScript -k_ --package-name=Islet -o po/islet.pot prefs.js extension.js lib/*.js
     msgmerge --update po/id.po po/islet.pot
     msgfmt -c -o locale/id/LC_MESSAGES/islet.mo po/id.po
 
-Bahasa baru: salin `po/islet.pot` menjadi `po/<kode>.po`, terjemahkan, lalu kompilasi ke
-`locale/<kode>/LC_MESSAGES/islet.mo`. Format tanggal di Expanded mengikuti locale sistem.
+To add a language, copy `po/islet.pot` to `po/<code>.po`, translate it, then compile it to
+`locale/<code>/LC_MESSAGES/islet.mo`. The date format in the Expanded view follows the system
+locale.
 
-## Pemakaian
+## Usage
 
-Arahkan pointer ke notch (jam di tepi atas): setelah sekitar 0,15 detik notch membesar menjadi Expanded
-tanpa klik, dan menutup sekitar 0,35 detik setelah pointer keluar (ditunda selama tombol mouse masih
-ditekan, mis. menggeser slider). Klik notch membuka seketika. Tab Kontrol/Aktivitas berpindah halaman;
-tab aktif berwarna biru. Hover dan klik tidak mengambil fokus keyboard, jadi Alt+Tab dan klik aplikasi
-lain tetap bekerja. Hanya shortcut yang membuka Expanded dengan fokus keyboard (modal): Escape, tombol
-Tutup, klik luar, atau shortcut menutupnya, dan pointer keluar tidak menutupnya. Jika shortcut ditekan
-saat Expanded sedang terbuka lewat pointer, Expanded tidak menutup melainkan berpindah ke mode keyboard
-(fokus keyboard + modal); tekan sekali lagi untuk menutup.
-Shortcut awal `<Super><Shift>n`: saat fullscreen, tekan sekali untuk ringkas dan sekali lagi untuk
-Expanded. Setelah 6 detik tanpa input, reveal ditutup. Periksa konflik shortcut di Settings GNOME.
-Saat Overview, lock, atau menu native dibuka, notch disembunyikan. Jika Ganti Top Bar aktif, Top Bar
-asli tetap tersembunyi juga di Overview. Karena panel tidak tampil, pintasan GNOME Super+S (Quick
-Settings) dan Super+V (kalender/notifikasi) tidak membuka menunya saat Ganti Top Bar aktif; tombol di
-notch tidak menggantikannya, karena keduanya membuka aplikasi Settings, bukan menu Top Bar.
+Point at the notch (the clock at the top edge): after about 0.15 s it grows into the Expanded view
+without a click, and closes about 0.35 s after the pointer leaves (delayed while a mouse button is
+held, for example when dragging a slider). Clicking the notch opens it immediately. The
+Controls/Activity tabs switch pages; the active tab is blue. Hovering and clicking do not take
+keyboard focus, so Alt+Tab and clicking other apps keep working. Only the shortcut opens Expanded
+with keyboard focus (modal): Escape, the Close button, a click outside, or the shortcut closes it,
+and moving the pointer away does not. If the shortcut is pressed while Expanded was opened by the
+pointer, it does not close; it switches to keyboard mode (keyboard focus plus modal). Press it
+again to close.
 
-Tampilan compact: notch idle berisi jam dan ikon jaringan/baterai. Expanded (±320 px lebar) memuat
-header satu baris (jam, tanggal, baterai, tombol tutup), tab Kontrol/Aktivitas, empat tombol bulat
-(Wi-Fi, Bluetooth, Caffeine, Suara), baris volume, dan satu deret tombol ikon kecil (gear: buka
-GNOME Settings, lonceng: Settings > Notifikasi, lalu Kunci, Keluar, Mulai ulang, Matikan). Status tombol terbaca dari warna aktif dan
-dari nama aksesibilitasnya.
+The default shortcut is `<Super><Shift>n`. In fullscreen, press it once for the compact notch and
+again for Expanded. After 6 seconds without input the reveal closes. Check for shortcut conflicts
+in GNOME Settings.
 
-Peek musik: saat lagu berganti di Spotify atau player MPRIS lain, notch menampilkan sampul (hanya art
-file lokal `file://`; Spotify memakai ikon aplikasi, URL https tidak diunduh), judul, dan "artis • aplikasi" dengan ikon putar di kanan. Dengan Privacy Mode aktif
-hanya tampil "<aplikasi>: sedang memutar". Aktif/nonaktif dan durasinya diatur di Preferences,
-grup Musik ("Tampilkan lagu yang diputar" dan "Durasi tampil (detik)"). Peek musik mengikuti DND:
-saat banner dimatikan (`show-banners` false) lagu tidak ditampilkan dan tidak muncul belakangan.
+The notch hides during Overview and when a native menu is open. With Replace Top Bar enabled, the
+native Top Bar stays hidden in Overview too. Because the panel is not shown, the GNOME shortcuts
+Super+S (Quick Settings) and Super+V (calendar/notifications) do not open their menus while Replace
+Top Bar is on; the notch buttons do not replace them, as both open the Settings app rather than a
+Top Bar menu.
 
-Wi-Fi menampilkan status radio; tombolnya membuka Settings. Bluetooth membuka Settings.
-Volume/mute mengendalikan default audio sink. Caffeine hanya mengelola inhibit idle+suspend milik
-Islet; mematikannya tidak melepas inhibitor aplikasi lain. Lock, Logout, Restart, Shutdown
-memakai mekanisme GNOME dan kebijakan konfirmasi sistem. Tombol gear membuka aplikasi GNOME Settings
-dan tombol lonceng membuka panel Notifikasi di Settings; keduanya menutup notch dan tidak memunculkan
-Top Bar.
+**Music Peek.** When the song changes, the notch shows the cover art (local `file://` art only;
+Spotify uses the app icon, and https URLs are not downloaded), the title, and "artist • app" with a
+play icon on the right. With Privacy Mode on, only "<app>: now playing" is shown. Enable it and set
+its duration in Preferences, under Music ("Show now-playing song" and "Display duration
+(seconds)"). Music Peek follows Do Not Disturb: when banners are off (`show-banners` is false),
+songs are neither shown nor queued for later.
 
-Privacy Mode aktif secara default. Label aplikasi dapat tetap terlihat, judul/isi/aksi disembunyikan.
-Activity memakai referensi paling banyak 50 notifikasi yang masih tersedia di GNOME. Antrean Peek
-maksimum 20 item, durasi 4 detik per item, duplikat selama antre/Peek digabung. Menutup Peek tidak
-menghapus notifikasi sistem. Tidak ada histori tambahan yang ditulis ke disk. Riwayat native GNOME
-tetap mengikuti konfigurasi sistemnya. Critical tetap melalui GNOME, termasuk saat fullscreen.
-Low/background masuk Activity; tidak ditampilkan sebagai Running tanpa sumber aktivitas valid.
+**System controls.** The Wi-Fi button shows the radio status and opens Settings; Bluetooth opens
+Settings. Volume and mute control the default audio sink. Caffeine only manages the idle+suspend
+inhibit owned by Islet; turning it off does not release other applications' inhibitors. Lock, Log
+out, Restart, and Power off use GNOME's mechanisms and the system's confirmation policy. The gear
+opens the GNOME Settings app and the bell opens Settings > Notifications; both close the notch and
+do not bring back the Top Bar.
 
-## Codex
+**Privacy Mode** is on by default. The app label can stay visible; the title, body, and actions are
+hidden. Activity references at most 50 notifications still available in GNOME. The Peek queue holds
+at most 20 items, each shown for 4 seconds, and duplicates are merged while queued or shown.
+Closing a Peek does not delete the system notification. Islet writes no additional history to disk;
+the native GNOME history follows the system configuration. Critical notifications still go through
+GNOME, including in fullscreen. Low-priority and background notifications go to Activity; nothing is
+shown as Running without a valid activity source.
 
-Setelah extension terinstall, tambahkan SATU root key di konfigurasi USER Codex, sebelum tabel TOML:
 
-    notify = ["python3", "/home/gabz/.local/share/gnome-shell/extensions/islet@local/bridge/codex-notify.py"]
-
-Sesuaikan path jika akun berbeda. Backup config sebelum edit, pertahankan semua key lain, dan
-restart proses Codex. Bridge hanya menerima agent-turn-complete. Isi prompt/jawaban, session ID,
-dan path proyek tidak diteruskan secara default. Tambahkan `--show-project` sebagai argv sebelum
-payload JSON hanya jika ingin menampilkan basename proyek; ini merupakan opt-in metadata.
-Periksa notifikasi terminal/TUI agar satu penyelesaian tidak menghasilkan dua sumber notifikasi.
-
-## Verifikasi
+## Verification
 
     glib-compile-schemas --strict --dry-run schemas
 
-Pemeriksaan ini hanya memvalidasi schema. Fullscreen/input Wayland, perilaku panel, D-Bus,
-perangkat, animasi, dan keamanan redirect banner hanya dapat diverifikasi pada sesi nyata.
-Gunakan matriks QA dalam dokumen handoff.
+This only validates the schema. Wayland fullscreen and input behavior, panel behavior, D-Bus,
+devices, animations, and the safety of banner redirection can only be verified in a real session.
 
-## Disable dan recovery
+## Disable and recovery
 
-Jika Shell masih responsif:
+If the Shell is still responsive:
 
     gnome-extensions disable islet@local
 
-Disable normal harus mengembalikan tracking strut dan kebijakan panel, melepas modal dan inhibitor
-sendiri, memulihkan method notifikasi, serta menghapus signal, timer, dan actor yang dibuat extension.
-Inhibit request yang masih berjalan harus melepaskan cookie saat jawaban diterima; uji race ini.
-Jika API notifikasi berubah, matikan Alihkan banner ke notch dan pakai banner GNOME.
+A normal disable should restore strut tracking and the panel policy, release its own modal and
+inhibitors, restore the notification methods, and remove every signal, timer, and actor the
+extension created. An inhibit request still in flight must release its cookie when the reply
+arrives; test this race. If the notification API changes, turn off Redirect banners to the island
+and use GNOME banners.
 
-Jika Shell tidak responsif, masuk TTY (Ctrl+Alt+F3), login sebagai pengguna yang sama, lalu pindahkan
-folder extension ke luar direktori extensions:
+If the Shell is unresponsive, switch to a TTY (Ctrl+Alt+F3), log in as the same user, and move the
+extension folder out of the extensions directory:
 
     mkdir -p "$HOME/.local/share/islet-recovery"
     mv "$HOME/.local/share/gnome-shell/extensions/islet@local" "$HOME/.local/share/islet-recovery/islet-$(date +%Y%m%d-%H%M%S)"
 
-Simpan pekerjaan jika masih memungkinkan, lalu logout/login sesi grafis. Jangan menyalakan kembali
-extension sebelum log diperiksa. Crash proses Shell berbeda dari disable normal; restore di proses
-yang sudah berhenti tidak bisa dijanjikan. Backup/restore config Codex secara terpisah jika hook dicabut.
-Jangan menghapus config user atau seluruh daftar enabled-extensions.
+Save your work if you still can, then log out and back in to the graphical session. Do not
+re-enable the extension before checking the logs. A Shell process crash is different from a normal
+disable; restoring state in a process that has already stopped cannot be promised. Back up and
+restore the Codex config separately if you remove the hook. Do not delete user config or the whole
+enabled-extensions list.
+
+## Known limitations
+
+- Dash to Dock can glitch together with the notch when a maximized browser such as Brave is open.
+  Cause not yet found; setting `affectsStruts` to `true` in `lib/panel.js` avoids it at the cost of
+  a roughly 29 px empty strip above windows.
+- The GDM login screen is not supported; only the in-session lock screen is.
+
+## License
+
+Copyright (C) 2026 Gabriel Bayu Handriyandanar
+
+Islet is free software: you can redistribute it and/or modify it under the terms of the GNU General
+Public License as published by the Free Software Foundation, either version 2 of the License, or (at
+your option) any later version (`GPL-2.0-or-later`). It is distributed WITHOUT ANY WARRANTY. See
+[LICENSE](LICENSE) for the full text.
