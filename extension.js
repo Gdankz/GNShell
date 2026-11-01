@@ -8,7 +8,7 @@ import {SystemAdapter} from './lib/system.js';
 import {NotificationAdapter} from './lib/notifications.js';
 import {MediaWatcher} from './lib/media.js';
 
-export default class GNShell extends Extension {
+export default class Islet extends Extension {
     enable() {
         this.life = new Lifetime();
         try {
@@ -39,7 +39,7 @@ export default class GNShell extends Extension {
             this.desktop.sync();
         } catch (error) {
             this.disable();
-            throw new Error(`[GNShell] Failed to enable the extension: ${error.message} Check schema compilation and the GNOME Shell log before enabling GNShell again.`, {cause: error});
+            throw new Error(`[Islet] Failed to enable the extension: ${error.message} Check schema compilation and the GNOME Shell log before enabling Islet again.`, {cause: error});
         }
     }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema id="org.gnome.shell.extensions.gnshell" path="/org/gnome/shell/extensions/gnshell/">
+  <schema id="org.gnome.shell.extensions.islet" path="/org/gnome/shell/extensions/islet/">
     <key name="toggle-island" type="as"><default>['&lt;Super&gt;&lt;Shift&gt;n']</default><summary>Smart Reveal shortcut</summary></key>
     <key name="replace-panel" type="b"><default>false</default><summary>Hide the native panel after feasibility tests</summary></key>
     <key name="redirect-notifications" type="b"><default>false</default><summary>Route eligible banners after notification tests</summary></key>

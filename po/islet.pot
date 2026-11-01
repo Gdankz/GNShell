@@ -1,0 +1,233 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Islet package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Islet\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-01 10:57+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: prefs.js:10
+msgid "Display and privacy"
+msgstr ""
+
+#: prefs.js:13
+msgid "Replace Top Bar"
+msgstr ""
+
+#: prefs.js:13
+msgid "Enable only after the panel and recovery tests pass."
+msgstr ""
+
+#: prefs.js:14
+msgid "Redirect banners to the island"
+msgstr ""
+
+#: prefs.js:14
+msgid "Off: use GNOME banners. Enable only after the notification tests pass."
+msgstr ""
+
+#: prefs.js:15
+msgid "Privacy Mode"
+msgstr ""
+
+#: prefs.js:15
+msgid "Hide titles, message bodies, and action labels."
+msgstr ""
+
+#: prefs.js:16
+msgid "Animations"
+msgstr ""
+
+#: prefs.js:16
+msgid "Still follows the GNOME reduced-motion setting."
+msgstr ""
+
+#: prefs.js:23 lib/island.js:372
+msgid "Music"
+msgstr ""
+
+#: prefs.js:25
+msgid "Show now-playing song"
+msgstr ""
+
+#: prefs.js:26
+msgid ""
+"Peek in the island when the song changes in Spotify and other MPRIS players."
+msgstr ""
+
+#: prefs.js:29
+msgid "Display duration (seconds)"
+msgstr ""
+
+#: prefs.js:33
+msgid "Timing and shortcut"
+msgstr ""
+
+#: prefs.js:36
+msgid "Notification Peek (seconds)"
+msgstr ""
+
+#: prefs.js:37
+msgid "Smart Reveal (seconds)"
+msgstr ""
+
+#: prefs.js:44
+msgid "Shortcut"
+msgstr ""
+
+#: prefs.js:46
+msgid "Apply"
+msgstr ""
+
+#: prefs.js:55
+msgid ""
+"Invalid keyboard shortcut. Enter a valid modified key combination, for "
+"example Super+Shift+N."
+msgstr ""
+
+#: prefs.js:60
+msgid "Check for shortcut conflicts in GNOME Settings"
+msgstr ""
+
+#: prefs.js:61
+msgid ""
+"Default: &lt;Super&gt;&lt;Shift&gt;n. Do not use a shortcut already taken by "
+"another application."
+msgstr ""
+
+#: lib/island.js:358 lib/island.js:396
+msgid "Open Islet"
+msgstr ""
+
+#: lib/island.js:378
+#, javascript-format
+msgid "%s: now playing"
+msgstr ""
+
+#: lib/island.js:386
+msgid "Notification"
+msgstr ""
+
+#: lib/island.js:428
+msgid "Close"
+msgstr ""
+
+#: lib/island.js:435
+msgid "Controls"
+msgstr ""
+
+#: lib/island.js:436
+msgid "Activity"
+msgstr ""
+
+#: lib/island.js:482
+msgid "System controls are not available yet."
+msgstr ""
+
+#: lib/island.js:486
+msgid "No activity yet."
+msgstr ""
+
+#: lib/notifications.js:91
+msgid "Notification unavailable"
+msgstr ""
+
+#: lib/notifications.js:92
+msgid "Application"
+msgstr ""
+
+#: lib/notifications.js:94
+#, javascript-format
+msgid "%s: new notification"
+msgstr ""
+
+#: lib/notifications.js:169
+msgid "No notifications yet."
+msgstr ""
+
+#: lib/system.js:192 lib/system.js:240
+msgid "Mute"
+msgstr ""
+
+#: lib/system.js:211
+msgid "Open GNOME Settings"
+msgstr ""
+
+#: lib/system.js:212
+msgid "Notification settings"
+msgstr ""
+
+#: lib/system.js:217
+msgid "Lock screen"
+msgstr ""
+
+#: lib/system.js:218
+msgid "Log out"
+msgstr ""
+
+#: lib/system.js:219
+msgid "Restart"
+msgstr ""
+
+#: lib/system.js:220
+msgid "Power off"
+msgstr ""
+
+#: lib/system.js:240
+msgid "Unmute"
+msgstr ""
+
+#: lib/system.js:243
+msgid "Sound"
+msgstr ""
+
+#: lib/system.js:244 lib/system.js:273
+msgid "Unavailable"
+msgstr ""
+
+#: lib/system.js:244
+msgid "Muted"
+msgstr ""
+
+#: lib/system.js:273 lib/system.js:278 lib/system.js:281
+msgid "On"
+msgstr ""
+
+#: lib/system.js:273 lib/system.js:278 lib/system.js:281
+msgid "Off"
+msgstr ""
+
+#: lib/system.js:278
+msgid "No adapter"
+msgstr ""
+
+#: lib/system.js:281
+msgid "Waiting…"
+msgstr ""
+
+#: lib/system.js:285
+msgid "Stop"
+msgstr ""
+
+#: lib/system.js:285
+msgid "Record"
+msgstr ""
+
+#: lib/system.js:285
+msgid "Recording"
+msgstr ""
+
+#: lib/system.js:285
+msgid "Ready"
+msgstr ""

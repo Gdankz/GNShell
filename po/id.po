@@ -1,0 +1,228 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Islet package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Islet\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-01 10:57+0700\n"
+"PO-Revision-Date: 2026-11-01 00:00+0700\n"
+"Last-Translator: Islet developers\n"
+"Language-Team: Indonesian\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: prefs.js:10
+msgid "Display and privacy"
+msgstr "Tampilan dan privasi"
+
+#: prefs.js:13
+msgid "Replace Top Bar"
+msgstr "Ganti Top Bar"
+
+#: prefs.js:13
+msgid "Enable only after the panel and recovery tests pass."
+msgstr "Aktifkan hanya setelah pengujian panel dan pemulihan lolos."
+
+#: prefs.js:14
+msgid "Redirect banners to the island"
+msgstr "Alihkan banner ke island"
+
+#: prefs.js:14
+msgid "Off: use GNOME banners. Enable only after the notification tests pass."
+msgstr "Mati: pakai banner GNOME. Aktifkan hanya setelah pengujian notifikasi lolos."
+
+#: prefs.js:15
+msgid "Privacy Mode"
+msgstr "Mode Privasi"
+
+#: prefs.js:15
+msgid "Hide titles, message bodies, and action labels."
+msgstr "Sembunyikan judul, isi pesan, dan label aksi."
+
+#: prefs.js:16
+msgid "Animations"
+msgstr "Animasi"
+
+#: prefs.js:16
+msgid "Still follows the GNOME reduced-motion setting."
+msgstr "Tetap mengikuti pengaturan kurangi gerakan GNOME."
+
+#: prefs.js:23 lib/island.js:372
+msgid "Music"
+msgstr "Musik"
+
+#: prefs.js:25
+msgid "Show now-playing song"
+msgstr "Tampilkan lagu yang sedang diputar"
+
+#: prefs.js:26
+msgid "Peek in the island when the song changes in Spotify and other MPRIS players."
+msgstr "Tampilkan Peek di island saat lagu berganti di Spotify dan pemutar MPRIS lain."
+
+#: prefs.js:29
+msgid "Display duration (seconds)"
+msgstr "Durasi tampil (detik)"
+
+#: prefs.js:33
+msgid "Timing and shortcut"
+msgstr "Waktu dan pintasan"
+
+#: prefs.js:36
+msgid "Notification Peek (seconds)"
+msgstr "Peek notifikasi (detik)"
+
+#: prefs.js:37
+msgid "Smart Reveal (seconds)"
+msgstr "Smart Reveal (detik)"
+
+#: prefs.js:44
+msgid "Shortcut"
+msgstr "Pintasan"
+
+#: prefs.js:46
+msgid "Apply"
+msgstr "Terapkan"
+
+#: prefs.js:55
+msgid "Invalid keyboard shortcut. Enter a valid modified key combination, for example Super+Shift+N."
+msgstr "Pintasan keyboard tidak valid. Masukkan kombinasi tombol dengan pengubah yang valid, misalnya Super+Shift+N."
+
+#: prefs.js:60
+msgid "Check for shortcut conflicts in GNOME Settings"
+msgstr "Periksa bentrokan pintasan di Pengaturan GNOME"
+
+#: prefs.js:61
+msgid "Default: &lt;Super&gt;&lt;Shift&gt;n. Do not use a shortcut already taken by another application."
+msgstr "Bawaan: &lt;Super&gt;&lt;Shift&gt;n. Jangan pakai pintasan yang sudah dipakai aplikasi lain."
+
+#: lib/island.js:358 lib/island.js:396
+msgid "Open Islet"
+msgstr "Buka Islet"
+
+#: lib/island.js:378
+#, javascript-format
+msgid "%s: now playing"
+msgstr "%s: sedang memutar"
+
+#: lib/island.js:386
+msgid "Notification"
+msgstr "Notifikasi"
+
+#: lib/island.js:428
+msgid "Close"
+msgstr "Tutup"
+
+#: lib/island.js:435
+msgid "Controls"
+msgstr "Kontrol"
+
+#: lib/island.js:436
+msgid "Activity"
+msgstr "Aktivitas"
+
+#: lib/island.js:482
+msgid "System controls are not available yet."
+msgstr "Kontrol sistem belum tersedia."
+
+#: lib/island.js:486
+msgid "No activity yet."
+msgstr "Belum ada aktivitas."
+
+#: lib/notifications.js:91
+msgid "Notification unavailable"
+msgstr "Notifikasi tidak tersedia"
+
+#: lib/notifications.js:92
+msgid "Application"
+msgstr "Aplikasi"
+
+#: lib/notifications.js:94
+#, javascript-format
+msgid "%s: new notification"
+msgstr "%s: notifikasi baru"
+
+#: lib/notifications.js:169
+msgid "No notifications yet."
+msgstr "Belum ada notifikasi."
+
+#: lib/system.js:192 lib/system.js:240
+msgid "Mute"
+msgstr "Bisukan"
+
+#: lib/system.js:211
+msgid "Open GNOME Settings"
+msgstr "Buka Pengaturan GNOME"
+
+#: lib/system.js:212
+msgid "Notification settings"
+msgstr "Pengaturan notifikasi"
+
+#: lib/system.js:217
+msgid "Lock screen"
+msgstr "Kunci layar"
+
+#: lib/system.js:218
+msgid "Log out"
+msgstr "Keluar"
+
+#: lib/system.js:219
+msgid "Restart"
+msgstr "Mulai ulang"
+
+#: lib/system.js:220
+msgid "Power off"
+msgstr "Matikan"
+
+#: lib/system.js:240
+msgid "Unmute"
+msgstr "Bunyikan"
+
+#: lib/system.js:243
+msgid "Sound"
+msgstr "Suara"
+
+#: lib/system.js:244 lib/system.js:273
+msgid "Unavailable"
+msgstr "Tidak tersedia"
+
+#: lib/system.js:244
+msgid "Muted"
+msgstr "Dibisukan"
+
+#: lib/system.js:273 lib/system.js:278 lib/system.js:281
+msgid "On"
+msgstr "Aktif"
+
+#: lib/system.js:273 lib/system.js:278 lib/system.js:281
+msgid "Off"
+msgstr "Mati"
+
+#: lib/system.js:278
+msgid "No adapter"
+msgstr "Tidak ada adapter"
+
+#: lib/system.js:281
+msgid "Waiting…"
+msgstr "Menunggu…"
+
+#: lib/system.js:285
+msgid "Stop"
+msgstr "Berhenti"
+
+#: lib/system.js:285
+msgid "Record"
+msgstr "Rekam"
+
+#: lib/system.js:285
+msgid "Recording"
+msgstr "Merekam"
+
+#: lib/system.js:285
+msgid "Ready"
+msgstr "Siap"
